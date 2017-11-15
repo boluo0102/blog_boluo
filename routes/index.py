@@ -18,6 +18,9 @@ def current_user():
     return u
 
 
+
+
+
 @main.route("/")
 def index():
     u = current_user()
@@ -34,15 +37,13 @@ def register():
 @main.route("/login",methods=['POST'])
 def login():
     form = request.form
-    print('denglu',form)
     u = User.validate_login(form)
-    print('denglu',u)
     if u is None:
         return redirect(url_for('.index'))
     else:
         session['user_id'] = u.id
         session.permanent =True
-        return redirect(url_for('.profile'))
+        return redirect(url_for('topic.index'))
 
 
 @main.route("/profile")

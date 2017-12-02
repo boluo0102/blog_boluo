@@ -58,16 +58,15 @@
         {% for r in topic.replies() %}
         <div class='cell reply_area reply_item'>
             <div class='author_content'>
-                <a href="/user/leiwei1991" class="user_avatar">
-                    <img src="https://avatars2.githubusercontent.com/u/10721874?v=3&amp;s=120"
-                         title="{{ r.user().username }}"/>
-                </a>
+                <a class="user_avatar pull-left">
+                                 <img src="{{ '/uploads/' + r.user().user_image + '?v=3&amp;s=120' }}"/>
+                            </a>
                 <div class='user_info'>
                     <a class='dark reply_author'>
                         {{ r.user().username }}
                     </a>
                     <a class="reply_time">
-                        {{ loop.index }}楼 • 2 天前
+                        {{ loop.index }}楼
                     </a>
                 </div>
                 <div class='user_action'>

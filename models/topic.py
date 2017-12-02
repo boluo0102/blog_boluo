@@ -42,7 +42,8 @@ class Topic(Mongua):
         ('content', str, ''),
         ('user_id', int, -1),
         ('board_id', int, -1),
-        ('views', int, 0)
+        ('views', int, 0),
+        ('title',str,''),
     ]
 
     @classmethod

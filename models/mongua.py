@@ -1,5 +1,6 @@
 import time
 from pymongo import MongoClient
+
 mongua = MongoClient()
 
 
@@ -131,7 +132,7 @@ class Mongua(object):
         # ds = mongua.db[name].find()
         # l = [cls._new_with_bson(d) for d in ds]
         # return l
-        return cls._find()
+        return cls._find(deleted=False)
 
     # TODO, 还应该有一个函数 find(name, **kwargs)
     @classmethod
@@ -225,11 +226,12 @@ class Mongua(object):
     def delete(self):
         name = self.__class__.__name__
         query = {
-            'id': self.id,
+            'id': self.id
         }
-        values = {
+        print('shanchu', query)
+        values = {"$set": {
             'deleted': True
-        }
+        }}
         mongua.db[name].update_one(query, values)
         # self.deleted = True
         # self.save()

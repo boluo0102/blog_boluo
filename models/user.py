@@ -55,6 +55,7 @@ class User(Mongua):
         ('username', str, ''),
         ('password', str, ''),
         ('user_image', str, ''),
+        ('role',str,0)
     ]
 
     """
@@ -90,7 +91,7 @@ class User(Mongua):
         pwd = form.get('password', '')
         if len(name) > 2 and User.find_by(username=name) is None:
             u = User()
-            u.from_form(form)
+            u = u.new(form)
             u.password = u.salted_password(pwd)
             u.save()
             return u
